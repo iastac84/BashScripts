@@ -18,9 +18,8 @@ date > $DIR/yum_web_admin.log
 echo "" >> $DIR/yum_web_admin.log
 
 if [ "$ARG1" = "check-updates" ] ; then
-        $YUM check-update >> $DIR/yum_web_admin.log
+        $YUM check-update >> $DIR/yum_web_admin.log 2>&1
         YUM_RESULT=$?
-        echo $YUM_RESULT
                 case $YUM_RESULT in
                         100)
                                 echo "Updates available"
@@ -37,9 +36,8 @@ if [ "$ARG1" = "check-updates" ] ; then
                 esac
 
 elif [ "$ARG1" = "check-installed" ] ; then
-        $YUM list --installed $ARG2 >> $DIR/yum_web_admin.log
+        $YUM list --installed $ARG2 >> $DIR/yum_web_admin.log 2>&1
         YUM_RESULT=$?
-        echo $YUM_RESULT
                 case $YUM_RESULT in
                         0)
                                 echo "Package $ARG2 is installed!"
@@ -52,9 +50,8 @@ elif [ "$ARG1" = "check-installed" ] ; then
                 esac
 
 elif [ "$ARG1" = "check-available" ] ; then
-        $YUM list --available $ARG2 >> $DIR/yum_web_admin.log
+        $YUM list --available $ARG2 >> $DIR/yum_web_admin.log 2>&1
         YUM_RESULT=$?
-        echo $YUM_RESULT
                 case $YUM_RESULT in
                         0)
                                 echo "Package $ARG2 is available!"
